@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NutriTrack | Nutrition Insights</title><link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<header><div class="brand">🥗 NutriTrack</div><span>Nutrition insights & early indicator review</span></header>
+<main>
+  <section class="hero"><div><p class="eyebrow">EDUCATIONAL SCREENING SUPPORT</p><h1>Understand nutrition data.<br><em>Spot patterns earlier.</em></h1>
+  <p>Record measurements, review trends and identify records that may need professional follow-up.</p></div>
+  <div class="hero-mark">＋</div></section>
+  <section class="stats">
+    <article><small>Total assessments</small><strong id="total">0</strong></article>
+    <article><small>Under 20 records</small><strong id="young">0</strong></article>
+    <article><small>Adult records</small><strong id="adult">0</strong></article>
+  </section>
+  <div class="layout">
+    <section class="panel">
+      <div class="section-title"><div><p class="eyebrow">NEW RECORD</p><h2>Nutrition assessment</h2></div></div>
+      <form id="assessment-form">
+        <label>Participant code<input name="participant_code" required maxlength="80" placeholder="e.g. NT-001"></label>
+        <div class="two">
+          <label>Age (years)<input name="age_years" type="number" min="0.1" max="120" step="0.1" required></label>
+          <label>Sex reference<select name="sex_reference"><option value="not_specified">Not specified</option><option value="female">Female</option><option value="male">Male</option></select></label>
+        </div>
+        <div class="two">
+          <label>Height (cm)<input name="height_cm" type="number" min="30" max="250" step="0.1" required></label>
+          <label>Weight (kg)<input name="weight_kg" type="number" min="1" max="400" step="0.1" required></label>
+        </div>
+        <div class="two">
+          <label>Dietary diversity (0–10)<input name="dietary_diversity" type="number" min="0" max="10" placeholder="Optional"></label>
+          <label>Meals per day<input name="meals_per_day" type="number" min="0" max="10" placeholder="Optional"></label>
+        </div>
+        <label>Notes (optional)<textarea name="notes" maxlength="500" rows="3" placeholder="Non-identifying context only"></textarea></label>
+        <button type="submit">Save assessment <span>→</span></button><p id="form-message" role="status"></p>
+      </form>
+    </section>
+    <section class="panel">
+      <p class="eyebrow">DATA OVERVIEW</p><h2>Assessment records</h2>
+      <div class="chart-wrap"><canvas id="trend-chart"></canvas></div>
+      <div class="ml-box"><div><b>ML anomaly exploration</b><p id="ml-status">Checking model availability…</p></div><span>✳</span></div>
+      <p class="muted">The anomaly detector explores unusual measurement patterns in the saved dataset. It does not predict or diagnose malnutrition.</p>
+    </section>
+  </div>
+  <section class="panel records"><div class="section-title"><div><p class="eyebrow">HISTORY</p><h2>Recent assessments</h2></div><button class="secondary" id="refresh">Refresh</button></div>
+    <div class="table-scroll"><table><thead><tr><th>Code</th><th>Age</th><th>BMI</th><th>Review status</th><th>Date</th><th></th></tr></thead><tbody id="records"></tbody></table></div>
+  </section>
+  <footer>NutriTrack is an educational prototype, not a medical device or diagnostic service. Do not enter real patient-identifying information. Consult qualified health professionals for assessment.</footer>
+</main>
+<script src="app.js"></script>
+</body></html>

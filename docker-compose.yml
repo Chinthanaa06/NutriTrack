@@ -1,0 +1,13 @@
+services:
+  nutritrack:
+    build: .
+    container_name: nutritrack-app
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=sqlite:////app/data/nutritrack.db
+    volumes:
+      - nutritrack_data:/app/data
+    restart: unless-stopped
+volumes:
+  nutritrack_data:
